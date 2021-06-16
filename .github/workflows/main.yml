@@ -25,21 +25,30 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Export scenarios from Xray and generate .feature file(s)
+      run: |
+        FEATURES_FILE=features.zip
+        rm -f $FEATURES_FILE
+        curl -u ${{ secrets.JIRA_USERNAME }}:${{ secrets.JIRA_PASSWORD }}  "${{ secrets.JIRA_BASEURL }}/rest/raven/2.0/export/test?keys=${{ secrets.ISSUE_KEYS_TO_EXPORT_FROM }}&fz=true" -o $FEATURES_FILE
+        rm -f features/*.feature
+        unzip -o $FEATURES_FILE  -d features
     - name: Cypress run
       uses: cypress-io/github-action@v2
       with:
           # Specify Browser since container image is compile with Firefox
         browser: firefox
-    - run: npm run test
-    - name: "Import results to Xray"
+    # - run: npm run test
+    - run: npm run attach_screenshots
+    - run: node_modules/cucumber-json-merge/bin/cucumber-json-merge  -d cypress/cucumber-json/
+    - name: "Import results to Xray (server/DC)"
       uses: mikepenz/xray-action@v1.1.0
       with:
          username: ${{ secrets.JIRA_USERNAME }}
          password: ${{ secrets.JIRA_PASSWORD }}
          xrayCloud: "false"
          xrayBaseUrl: ${{ secrets.JIRA_BASEURL }}
-         testFormat: "junit"
-         testPaths: "**/junit.xml"
-         testPlanKey: "${{ secrets.TESTPLAN_KEY }}"
+         testFormat: "cucumber"
+         testPaths: "merged-test-results.json"
          projectKey: "${{ secrets.PROJECT_KEY }}"
+         testPlanKey: "${{ secrets.TESTPLAN_KEY }}"
          testEnvironments: "NODE_${{ matrix.node-version }}"
