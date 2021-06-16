@@ -25,16 +25,13 @@ npm install
 The straighforward approach to run everything in a single shot is to invoke the auxiliary script [run_all_cloud_standard_workflow.sh](run_all_cloud_standard_workflow.sh).
 You need to update the client_id and client_secret to interact with your Xray cloud instance (obtainable from Xray API Keys section); you also need to update the issue keys of the corresponding stories in Jira, that you'll use as basis to generate the .feature file(s).
 
-Remember that to be able to run the scenarios, we need to have the corresponding .feature files. The previous script assumes you are using Xray to manage the specification of the scenarios,
-so you need to extract them from Jira (more on the possible workflows [here](https://docs.getxray.app/pages/viewpage.action?pageId=31622264)).
+Remember that to be able to run the scenarios, we need to have the corresponding .feature files. The previous script assumes you are using Xray to manage the specification of the scenarios, so you need to extract them from Jira (more on the possible workflows [here](https://docs.getxray.app/pages/viewpage.action?pageId=31622264)).
 
-When you have the .feature files, containing the Feature along with the Scenario properly tagged, you can finally run the tests using the `behave` tool.
+When you have the .feature files, containing the Feature along with the Scenario properly tagged, you can finally run the tests using the `cypress` tool (directly or through npm).
 
 ```bash
 npm test
 ```
-
-
 
 
 ## Submitting results to Jira
