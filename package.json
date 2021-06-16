@@ -1,5 +1,5 @@
 {
-  "name": "tutorial-js-cypress-cucumber-selenium",
+  "name": "tutorial-js-cypress-cucumber",
   "version": "1.0.0",
   "description": "An example for Cypress and Cucumber usage using Robot login demo website",
   "main": "index.js",
