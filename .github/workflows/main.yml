@@ -62,6 +62,6 @@ jobs:
          testFormat: "cucumber"
          testPaths: "merged-test-results.json"
          projectKey: "${{ secrets.PROJECT_KEY }}"
-         testPlanKey: "${{ secrets.TESTPLAN_KEY }}"
-         testEnvironments: "NODE_${{ matrix.node-version }}"
          testExecutionJson: test_exec.json
+         # testPlanKey: "${{ secrets.TESTPLAN_KEY }}"
+         # testEnvironments: "NODE_${{ matrix.node-version }}"
