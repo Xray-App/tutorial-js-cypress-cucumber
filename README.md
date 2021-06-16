@@ -1,16 +1,13 @@
 # Tutorial with Cypress tests, in JavaScript, using Cucumber, integrated with Xray
 
-[![build workflow](https://github.com/Xray-App/tutorial-js-cypress-cucumber
-/actions/workflows/main.yml/badge.svg)](https://github.com/Xray-App/tutorial-python-behave/actions/workflows/main.yml)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FXray-App%2Ftutorial-js-cypress-cucumber
-.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FXray-App%2Ftutorial-js-cypress-cucumber
-?ref=badge_shield)
+[![build workflow](https://github.com/Xray-App/tutorial-js-cypress-cucumber/actions/workflows/main.yml/badge.svg)](https://github.com/Xray-App/tutorial-python-behave/actions/workflows/main.yml)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FXray-App%2Ftutorial-js-cypress-cucumber.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2FXray-App%2Ftutorial-js-cypress-cucumber?ref=badge_shield)
 [![license](https://img.shields.io/badge/License-BSD%203--Clause-green.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/Xray-App/community)
 
 ## Overview
 
-Code that supports the tutorial [Testing using Cypress and Cucumber in JavaScript](https://docs.getxray.app/display/XRAYCLOUD/Testing+using+Cypress+and+Cucumber+in+JavaScript) showcasing the integration between [Xray Test Management](https://www.getxray.app/) on Jira and Behave.
+Code that supports the tutorial [Testing using Cypress and Cucumber in JavaScript](https://docs.getxray.app/display/XRAYCLOUD/Testing+using+Cypress+and+Cucumber+in+JavaScript) showcasing the integration between [Xray Test Management](https://www.getxray.app/) on Jira and Cypress.
 
 The test automation code implements some UI tests for doing authentication, targeting a dummy website providing a login page.
 
