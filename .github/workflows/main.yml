@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: CI
 
 on:
   push:
@@ -34,12 +34,21 @@ jobs:
         unzip -o $FEATURES_FILE  -d features
     - name: Cypress run
       uses: cypress-io/github-action@v2
+      continue-on-error: true
       with:
           # Specify Browser since container image is compile with Firefox
         browser: firefox
+        spec: features/**/*.feature
+        config: integrationFolder=.
     # - run: npm run test
+    - name: debug - list files1
+      run: |
+        ls -la
     - run: npm run attach_screenshots
     - run: node_modules/cucumber-json-merge/bin/cucumber-json-merge  -d cypress/cucumber-json/
+    - name: debug - list files2
+      run: |
+        ls -la
     - name: "Import results to Xray (server/DC)"
       uses: mikepenz/xray-action@v1.1.0
       with:
