@@ -37,6 +37,8 @@ jobs:
       with:
           # Specify Browser since container image is compile with Firefox
         browser: firefox
+        spec: features/**/*.feature
+        config: integrationFolder=.
     # - run: npm run test
     - name: debug - list files1
       run: |
