@@ -25,6 +25,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      with:
+          # Specify Browser since container image is compile with Firefox
+        browser: firefox
     - run: npm run test
     - name: "Import results to Xray"
       uses: mikepenz/xray-action@v1.1.0
