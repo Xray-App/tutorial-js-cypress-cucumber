@@ -49,6 +49,9 @@ jobs:
     - name: debug - list files2
       run: |
         ls -la
+    - name: generate auxiliary file to define fields on the Test Exeution
+      run: |
+        cat testexec_template.json  | sed s/PROJECT_KEY/XT/g | sed s/TESTEXECUTION_ISSUE_ID/9/g  | sed s/CF_TEST_ENVIRONMENT/11805/g | sed s/CF_TEST_PLAN/11807/g  | sed s/TESTPLAN_KEY/XT-44/g > test_exec.json
     - name: "Import results to Xray (server/DC)"
       uses: mikepenz/xray-action@v1.1.0
       with:
@@ -61,3 +64,4 @@ jobs:
          projectKey: "${{ secrets.PROJECT_KEY }}"
          testPlanKey: "${{ secrets.TESTPLAN_KEY }}"
          testEnvironments: "NODE_${{ matrix.node-version }}"
+         testExecutionJson: test_exec.json
