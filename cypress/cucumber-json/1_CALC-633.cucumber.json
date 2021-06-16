@@ -1,0 +1,66 @@
+[
+  {
+    "keyword": "Feature",
+    "name": "As a user, I can logout the application",
+    "line": 2,
+    "id": "as-a-user,-i-can-logout-the-application",
+    "tags": [
+      {
+        "name": "@REQ_CALC-633",
+        "line": 1
+      }
+    ],
+    "uri": "1_CALC-633.feature",
+    "elements": [
+      {
+        "id": "as-a-user,-i-can-logout-the-application;valid-logout",
+        "keyword": "Scenario",
+        "line": 6,
+        "name": "Valid Logout",
+        "tags": [
+          {
+            "name": "@REQ_CALC-633",
+            "line": 1
+          },
+          {
+            "name": "@TEST_CALC-637",
+            "line": 5
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "user is on the welcome page",
+            "result": {
+              "status": "passed",
+              "duration": 11106000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "user chooses to logout",
+            "result": {
+              "status": "passed",
+              "duration": 211000000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "login page should be open",
+            "result": {
+              "status": "passed",
+              "duration": 19000000
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

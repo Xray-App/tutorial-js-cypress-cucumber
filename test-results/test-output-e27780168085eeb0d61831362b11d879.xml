@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="4.312" tests="5" failures="0">
+  <testsuite name="Root Suite" timestamp="2020-11-03T12:14:15" tests="0" file="cypress/integration/login/login.feature" failures="0" time="0">
+  </testsuite>
+  <testsuite name="As a user, I can login the applicaiton" timestamp="2020-11-03T12:14:15" tests="5" failures="0" time="4.312">
+    <testcase name="As a user, I can login the applicaiton Valid Login" time="1.339" classname="Valid Login">
+    </testcase>
+    <testcase name="As a user, I can login the applicaiton Invalid Login" time="0.761" classname="Invalid Login">
+    </testcase>
+    <testcase name="As a user, I can login the applicaiton Login With Invalid Credentials Should Fail (example #1)" time="0.731" classname="Login With Invalid Credentials Should Fail (example #1)">
+    </testcase>
+    <testcase name="As a user, I can login the applicaiton Login With Invalid Credentials Should Fail (example #2)" time="0.718" classname="Login With Invalid Credentials Should Fail (example #2)">
+    </testcase>
+    <testcase name="As a user, I can login the applicaiton Login With Invalid Credentials Should Fail (example #3)" time="0.763" classname="Login With Invalid Credentials Should Fail (example #3)">
+    </testcase>
+  </testsuite>
+</testsuites>

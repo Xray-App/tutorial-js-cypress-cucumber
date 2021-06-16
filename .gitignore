@@ -1,0 +1,5 @@
+*.zip
+node_modules/
+test_results/*
+cloud_auth.json
+merged-test-results.json

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="4.734" tests="6" failures="1">
+  <testsuite name="Root Suite" timestamp="2020-11-03T12:34:21" tests="0" file="features/1_CALC-7905.feature" failures="0" time="0">
+  </testsuite>
+  <testsuite name="As a user, I can login the application" timestamp="2020-11-03T12:34:21" tests="6" failures="1" time="4.734">
+    <testcase name="As a user, I can login the application Login With Invalid Credentials Should Fail (example #1)" time="1.423" classname="Login With Invalid Credentials Should Fail (example #1)">
+    </testcase>
+    <testcase name="As a user, I can login the application Login With Invalid Credentials Should Fail (example #2)" time="0.72" classname="Login With Invalid Credentials Should Fail (example #2)">
+    </testcase>
+    <testcase name="As a user, I can login the application Login With Invalid Credentials Should Fail (example #3)" time="0" classname="Login With Invalid Credentials Should Fail (example #3)">
+      <failure message="Timed out retrying: expected &apos;&lt;h1&gt;&apos; to have text &apos;Error Page&apos;, but the text was &apos;Welcome Page&apos;" type="AssertionError"><![CDATA[AssertionError: Timed out retrying: expected '<h1>' to have text 'Error Page', but the text was 'Welcome Page'
+    at Object.toBeUnsuccessful (https://robotwebdemo.herokuapp.com/__cypress/tests?p=features/1_CALC-7905.feature:134:33)
+    at Context.eval (https://robotwebdemo.herokuapp.com/__cypress/tests?p=features/1_CALC-7905.feature:26:41)
+    at Context.resolveAndRunStepDefinition (https://robotwebdemo.herokuapp.com/__cypress/tests?p=features/1_CALC-7905.feature:10674:9)
+    at Context.eval (https://robotwebdemo.herokuapp.com/__cypress/tests?p=features/1_CALC-7905.feature:10015:35)]]></failure>
+    </testcase>
+    <testcase name="As a user, I can login the application Login With Invalid Credentials Should Fail (example #4)" time="0.916" classname="Login With Invalid Credentials Should Fail (example #4)">
+    </testcase>
+    <testcase name="As a user, I can login the application Invalid Login" time="0.82" classname="Invalid Login">
+    </testcase>
+    <testcase name="As a user, I can login the application Valid Login" time="0.855" classname="Valid Login">
+    </testcase>
+  </testsuite>
+</testsuites>

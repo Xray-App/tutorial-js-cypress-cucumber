@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.653" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2020-11-03T15:13:01" tests="0" file="features/2_CALC-7906.feature" failures="0" time="0">
+  </testsuite>
+  <testsuite name="As a user, I can logout the application" timestamp="2020-11-03T15:13:01" tests="1" failures="0" time="0.653">
+    <testcase name="As a user, I can logout the application Valid Logout" time="0.653" classname="Valid Logout">
+    </testcase>
+  </testsuite>
+</testsuites>

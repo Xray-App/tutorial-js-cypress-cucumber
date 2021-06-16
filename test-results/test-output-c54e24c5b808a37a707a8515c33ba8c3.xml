@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="4.849" tests="5" failures="0">
+  <testsuite name="Root Suite" timestamp="2020-11-03T12:27:08" tests="0" file="features/1_CALC-7905.feature" failures="0" time="0">
+  </testsuite>
+  <testsuite name="As a user, I can login the application" timestamp="2020-11-03T12:27:08" tests="5" failures="0" time="4.849">
+    <testcase name="As a user, I can login the application Login With Invalid Credentials Should Fail (example #1)" time="1.844" classname="Login With Invalid Credentials Should Fail (example #1)">
+    </testcase>
+    <testcase name="As a user, I can login the application Login With Invalid Credentials Should Fail (example #2)" time="0.742" classname="Login With Invalid Credentials Should Fail (example #2)">
+    </testcase>
+    <testcase name="As a user, I can login the application Login With Invalid Credentials Should Fail (example #3)" time="0.766" classname="Login With Invalid Credentials Should Fail (example #3)">
+    </testcase>
+    <testcase name="As a user, I can login the application Invalid Login" time="0.782" classname="Invalid Login">
+    </testcase>
+    <testcase name="As a user, I can login the application Valid Login" time="0.715" classname="Valid Login">
+    </testcase>
+  </testsuite>
+</testsuites>

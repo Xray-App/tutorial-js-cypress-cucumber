@@ -1,0 +1,58 @@
+{
+  "name": "tutorial-js-cypress-cucumber-selenium",
+  "version": "1.0.0",
+  "description": "An example for Cypress and Cucumber usage using Robot login demo website",
+  "main": "index.js",
+  "scripts": {
+    "cypress:open:local": "CYPRESS_ENV=localhost npm run cypress:open",
+    "cypress:open:prod": "CYPRESS_ENV=production npm run cypress:open",
+    "cypress:open": "cypress open",
+    "test:local": "CYPRESS_ENV=localhost npm run test  --spec 'cypress/integration/**/*.feature",
+    "test:prod": "CYPRESS_ENV=production npm run test",
+    "test": "cypress run --spec 'features/**/*.feature' --config integrationFolder=.",
+    "test:debug:local": "CYPRESS_ENV=localhost npm run test:debug",
+    "test:debug:prod": "CYPRESS_ENV=production npm run test:debug",
+    "test:debug": "cypress run --headed --browser chrome --env TAGS='@e2e-test' --spec 'cypress/integration/**/*.feature'",
+    "test:pull-features": "git submodule update --remote gherkin-features && cp -rf gherkin-features/* cypress/integration && node ./scripts/remove-old-features.js",
+    "attach_screenshots": "node attach_screenshots.js"
+  },
+  "author": "Xblend",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cucumber-json-merge": "0.0.4",
+    "fs-extra": "^7.0.1",
+    "glob": "^7.1.3"
+  },
+  "devDependencies": {
+    "cypress": "^5.5.0",
+    "cypress-cucumber-preprocessor": "^4.0.0",
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.3"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "cucumberJson": {
+      "generate": true,
+      "outputFolder": "cypress/cucumber-json",
+      "filePrefix": "",
+      "fileSuffix": ".cucumber"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint",
+      "git add"
+    ]
+  }
+}

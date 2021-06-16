@@ -1,0 +1,14 @@
+{
+  "baseUrl": "https://robotwebdemo.herokuapp.com/",
+  "testFiles": "**/*.feature",
+  "ignoreTestFiles": [
+    "*.js",
+    "*.md"
+  ],
+  "reporter": "junit",
+  "reporterOptions": {
+    "mochaFile": "test-results/test-output-[hash].xml"
+  },
+  "chromeWebSecurity": false,
+  "projectId": "bfi83g"
+}
