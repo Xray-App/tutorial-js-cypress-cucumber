@@ -6,13 +6,13 @@
   "scripts": {
     "cypress:open:local": "CYPRESS_ENV=localhost npm run cypress:open",
     "cypress:open:prod": "CYPRESS_ENV=production npm run cypress:open",
-    "cypress:open": "cypress open",
+    "cypress:open": "npx cypress open",
     "test:local": "CYPRESS_ENV=localhost npm run test  --spec 'cypress/integration/**/*.feature",
     "test:prod": "CYPRESS_ENV=production npm run test",
-    "test": "cypress run --spec 'features/**/*.feature' --config integrationFolder=.",
+    "test": "npx cypress run --spec 'features/**/*.feature' --config integrationFolder=.",
     "test:debug:local": "CYPRESS_ENV=localhost npm run test:debug",
     "test:debug:prod": "CYPRESS_ENV=production npm run test:debug",
-    "test:debug": "cypress run --headed --browser chrome --env TAGS='@e2e-test' --spec 'cypress/integration/**/*.feature'",
+    "test:debug": "npx cypress run --headed --browser chrome --env TAGS='@e2e-test' --spec 'cypress/integration/**/*.feature'",
     "test:pull-features": "git submodule update --remote gherkin-features && cp -rf gherkin-features/* cypress/integration && node ./scripts/remove-old-features.js",
     "attach_screenshots": "node attach_screenshots.js"
   },
