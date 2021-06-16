@@ -38,8 +38,14 @@ jobs:
           # Specify Browser since container image is compile with Firefox
         browser: firefox
     # - run: npm run test
+    - name: debug - list files1
+      run: |
+        ls -la
     - run: npm run attach_screenshots
     - run: node_modules/cucumber-json-merge/bin/cucumber-json-merge  -d cypress/cucumber-json/
+    - name: debug - list files2
+      run: |
+        ls -la
     - name: "Import results to Xray (server/DC)"
       uses: mikepenz/xray-action@v1.1.0
       with:
