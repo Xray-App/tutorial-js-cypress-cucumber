@@ -55,6 +55,7 @@ jobs:
     - name: debug - list files3
       run: |
         ls -la
+        cat test_exec.json
     - name: "Import results to Xray (server/DC)"
       uses: mikepenz/xray-action@v1.1.0
       with:
