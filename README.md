@@ -41,6 +41,12 @@ This repo contains an auxiliary script [import_results_cloud.sh](import_results_
 You can also have a look at the [workflows implemented in this repo](.github/workflows) using GitHub Actions.
 
 
+## Auxiliary scripts
+
+This repo also contains some auxiliary shell scripts, provided as an example; feel free to download and customize them to your needs.
+You may find scripts for interacting both with Xray server/DC or Xray cloud, which have slightly different APIs.
+
+
 ## Contact
 
 Any questions related with this code, please raise issues in this GitHub project. Feel free to contribute and submit PR's.
