@@ -43,21 +43,13 @@ jobs:
         spec: features/**/*.feature
         config: integrationFolder=.
     # - run: npm run test
-    - name: debug - list files1
-      run: |
-        ls -la
-    - run: npm run attach_screenshots
-    - run: node_modules/cucumber-json-merge/bin/cucumber-json-merge  -d cypress/cucumber-json/
-    - name: debug - list files2
-      run: |
-        ls -la
-    - name: generate auxiliary file to define fields on the Test Exeution
+    - name: attach Cypress screenshots to Cucumber JSON report
+      run: npm run attach_screenshots
+    - name: merge multiple Cucumber JSON reports to a single JSON file
+      run: node_modules/cucumber-json-merge/bin/cucumber-json-merge  -d cypress/cucumber-json/
+    - name: generate auxiliary file to define fields on the Test Execution
       run: |
         cat testexec_template.json  | sed s/PROJECT_KEY/${{ secrets.PROJECT_KEY }}/g | sed s/CF_TEST_ENVIRONMENT/${{ secrets.CF_TEST_ENVIRONMENTS }}/g |  sed s/TEST_ENVIRONMENT_NAME/${{ env.BROWSER }}/g | sed s/CF_TEST_PLAN/${{ secrets.CF_TEST_PLAN }}/g  | sed s/TESTPLAN_KEY/${{ secrets.TESTPLAN_KEY }}/g > test_exec.json
-    - name: debug - list files3
-      run: |
-        ls -la
-        cat test_exec.json
     - name: "Import results to Xray (server/DC) using multipart endpoint"
       run: |
         curl -X POST -u ${{ secrets.JIRA_USERNAME }}:${{ secrets.JIRA_PASSWORD }} -F info=@test_exec.json -F result=@"merged-test-results.json" ${{ secrets.JIRA_BASEURL }}/rest/raven/1.0/import/execution/cucumber/multipart
