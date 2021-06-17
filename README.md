@@ -29,6 +29,12 @@ Remember that to be able to run the scenarios, we need to have the corresponding
 When you have the .feature files, containing the Feature along with the Scenario properly tagged, you can finally run the tests using the `cypress` tool (directly or through npm).
 
 ```bash
+npx cypress run --spec 'features/**/*.feature' --config integrationFolder=.
+```
+
+or simply
+
+```bash
 npm test
 ```
 
