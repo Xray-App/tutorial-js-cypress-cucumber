@@ -37,7 +37,7 @@ jobs:
         echo "====================="
         echo $token
         cat cloud_auth.json
-   - name: Export scenarios from Xray and generate .feature file(s)
+    - name: Export scenarios from Xray and generate .feature file(s)
       run: |
         FEATURES_FILE=features.zip
         rm -f $FEATURES_FILE
