@@ -7,3 +7,4 @@ test_exec.json
 cypress/videos/features/*
 cypress/cucumber-json/*
 cypress/screenshots/features/*
+features/
