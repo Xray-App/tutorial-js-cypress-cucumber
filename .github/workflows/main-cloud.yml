@@ -63,11 +63,11 @@ jobs:
         ls -la
     - name: generate auxiliary JSON to define some fields on the Test Execution to be created
       run: |
-        cat testexec_template.json  | sed s/PROJECT_KEY/${{ secrets.PROJECT_KEY }}/g | sed s/CF_TEST_ENVIRONMENT/${{ secrets.CF_TEST_ENVIRONMENTS }}/g |  sed s/TEST_ENVIRONMENT_NAME/${{ env.BROWSER }}/g | sed s/CF_TEST_PLAN/${{ secrets.CF_TEST_PLAN }}/g  | sed s/TESTPLAN_KEY/${{ secrets.TESTPLAN_KEY }}/g > test_exec.json
+        cat testexec_cloud_template.json  | sed s/PROJECT_KEY/${{ secrets.PROJECT_KEY }}/g | sed s/TEST_ENVIRONMENT_NAME/${{ env.BROWSER }}/g | sed s/TESTPLAN_KEY/${{ secrets.TESTPLAN_KEY }}/g > test_exec.json
     - name: debug - list files3
       run: |
         ls -la
         cat test_exec.json
     - name: "Import results to Xray (cloud) using multipart endpoint"
       run: |
-        curl -X POST -H "Authorization: Bearer ${{ env.token }}"  -F info=@test_exec.json -F result=@"merged-test-results.json" "${{ secrets.XRAYCLOUD_BASE_URL }}/api/v1/import/execution/cucumber/multipart"
+        curl -X POST -H "Authorization: Bearer ${{ env.token }}"  -F info=@test_exec.json -F results=@"merged-test-results.json" "${{ secrets.XRAYCLOUD_BASE_URL }}/api/v1/import/execution/cucumber/multipart"
