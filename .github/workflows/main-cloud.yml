@@ -1,0 +1,76 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      BROWSER: firefox
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: generate auxiliary JSON for authenticating with Xray cloud and obtain token
+      run: |
+        cat cloud_auth.json.sample  | sed s/CLIENT_ID/${{ secrets.CLIENT_ID }}/g | sed s/CLIENT_SECRET/${{ secrets.CLIENT_SECRET }}/g > cloud_auth.json
+        token=$(curl -H "Content-Type: application/json" -X POST --data @"cloud_auth.json" ${{ secrets.XRAYCLOUD_BASE_URL }}/api/v1/authenticate| tr -d '"')
+    - name: debug - token
+      run: |
+        ls -la
+        echo "====================="
+        echo $token
+        cat cloud_auth.json
+    - name: abort
+      run: |
+        exit 1
+    - name: Export scenarios from Xray and generate .feature file(s)
+      run: |
+        FEATURES_FILE=features.zip
+        rm -f $FEATURES_FILE
+        curl -u ${{ secrets.JIRA_USERNAME }}:${{ secrets.JIRA_PASSWORD }}  "${{ secrets.JIRA_BASEURL }}/rest/raven/2.0/export/test?keys=${{ secrets.ISSUE_KEYS_TO_EXPORT_FROM }}&fz=true" -o $FEATURES_FILE
+        rm -f features/*.feature
+        unzip -o $FEATURES_FILE  -d features
+    - name: Cypress run
+      uses: cypress-io/github-action@v2
+      continue-on-error: true
+      with:
+          # Specify Browser; container image has Firefox
+        browser: ${{ env.BROWSER }}
+        spec: features/**/*.feature
+        config: integrationFolder=.
+    # - run: npm run test
+    - name: debug - list files1
+      run: |
+        ls -la
+    - run: npm run attach_screenshots
+    - run: node_modules/cucumber-json-merge/bin/cucumber-json-merge  -d cypress/cucumber-json/
+    - name: debug - list files2
+      run: |
+        ls -la
+    - name: generate auxiliary JSON to define some fields on the Test Execution to be created
+      run: |
+        cat testexec_template.json  | sed s/PROJECT_KEY/${{ secrets.PROJECT_KEY }}/g | sed s/CF_TEST_ENVIRONMENT/${{ secrets.CF_TEST_ENVIRONMENTS }}/g |  sed s/TEST_ENVIRONMENT_NAME/${{ env.BROWSER }}/g | sed s/CF_TEST_PLAN/${{ secrets.CF_TEST_PLAN }}/g  | sed s/TESTPLAN_KEY/${{ secrets.TESTPLAN_KEY }}/g > test_exec.json
+    - name: debug - list files3
+      run: |
+        ls -la
+        cat test_exec.json
+    - name: "Import results to Xray (cloud) using multipart endpoint"
+      run: |
+        curl -X POST -u ${{ secrets.JIRA_USERNAME }}:${{ secrets.JIRA_PASSWORD }} -F info=@test_exec.json -F result=@"merged-test-results.json" ${{ secrets.JIRA_BASEURL }}/rest/raven/1.0/import/execution/cucumber/multipart
