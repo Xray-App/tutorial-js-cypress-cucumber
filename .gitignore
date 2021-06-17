@@ -3,6 +3,7 @@ node_modules/
 test-results/*
 cloud_auth.json
 merged-test-results.json
+test_exec.json
 cypress/videos/features/*
 cypress/cucumber-json/*
 cypress/screenshots/features/*
