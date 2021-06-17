@@ -38,7 +38,7 @@ jobs:
         curl -H "Content-Type: application/json" -X GET -H "Authorization: Bearer ${{ env.token }}" "${{ secrets.XRAYCLOUD_BASE_URL }}/api/v1/export/cucumber?keys=${{ secrets.XRAYCLOUD_ISSUE_KEYS_TO_EXPORT_FROM }}" -o $FEATURES_FILE
         rm -f features/*.feature
         unzip -o $FEATURES_FILE  -d features
-    - name: Cypress run
+    - name: Run Cypress tests
       uses: cypress-io/github-action@v2
       continue-on-error: true
       with:
@@ -47,15 +47,13 @@ jobs:
         spec: features/**/*.feature
         config: integrationFolder=.
     # - run: npm run test
-    - run: npm run attach_screenshots
-    - run: node_modules/cucumber-json-merge/bin/cucumber-json-merge  -d cypress/cucumber-json/
+    - name: attach Cypress screenshots to Cucumber JSON report
+      run: npm run attach_screenshots
+    - name: merge multiple Cucumber JSON reports to a single JSON file
+      run: node_modules/cucumber-json-merge/bin/cucumber-json-merge  -d cypress/cucumber-json/
     - name: generate auxiliary JSON to define some fields on the Test Execution to be created
       run: |
         cat testexec_cloud_template.json  | sed s/PROJECT_KEY/${{ secrets.PROJECT_KEY }}/g | sed s/TEST_ENVIRONMENT_NAME/${{ env.BROWSER }}/g | sed s/TESTPLAN_KEY/${{ secrets.XRAYCLOUD_TESTPLAN_KEY }}/g > test_exec.json
-    - name: debug - list files3
-      run: |
-        ls -la
-        cat test_exec.json
     - name: "Import results to Xray (cloud) using multipart endpoint"
       run: |
         curl -X POST -H "Authorization: Bearer ${{ env.token }}"  -F info=@test_exec.json -F results=@"merged-test-results.json" "${{ secrets.XRAYCLOUD_BASE_URL }}/api/v1/import/execution/cucumber/multipart"
