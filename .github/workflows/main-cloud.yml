@@ -63,7 +63,7 @@ jobs:
         ls -la
     - name: generate auxiliary JSON to define some fields on the Test Execution to be created
       run: |
-        cat testexec_cloud_template.json  | sed s/PROJECT_KEY/${{ secrets.PROJECT_KEY }}/g | sed s/TEST_ENVIRONMENT_NAME/${{ env.BROWSER }}/g | sed s/TESTPLAN_KEY/${{ secrets.TESTPLAN_KEY }}/g > test_exec.json
+        cat testexec_cloud_template.json  | sed s/PROJECT_KEY/${{ secrets.PROJECT_KEY }}/g | sed s/TEST_ENVIRONMENT_NAME/${{ env.BROWSER }}/g | sed s/TESTPLAN_KEY/${{ secrets.XRAYCLOUD_TESTPLAN_KEY }}/g > test_exec.json
     - name: debug - list files3
       run: |
         ls -la
