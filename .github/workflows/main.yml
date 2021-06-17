@@ -13,6 +13,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      BROWSER: firefox
 
     strategy:
       matrix:
@@ -36,8 +38,8 @@ jobs:
       uses: cypress-io/github-action@v2
       continue-on-error: true
       with:
-          # Specify Browser since container image is compile with Firefox
-        browser: firefox
+          # Specify Browser; container image has Firefox
+        browser: ${{ env.BROWSER }}
         spec: features/**/*.feature
         config: integrationFolder=.
     # - run: npm run test
@@ -51,7 +53,7 @@ jobs:
         ls -la
     - name: generate auxiliary file to define fields on the Test Exeution
       run: |
-        cat testexec_template.json  | sed s/PROJECT_KEY/${{ secrets.PROJECT_KEY }}/g | sed s/CF_TEST_ENVIRONMENT/${{ secrets.CF_TEST_ENVIRONMENTS }}/g |  sed s/TEST_ENVIRONMENT_NAME/firefox/g | sed s/CF_TEST_PLAN/${{ secrets.CF_TEST_PLAN }}/g  | sed s/TESTPLAN_KEY/${{ secrets.TESTPLAN_KEY }}/g > test_exec.json
+        cat testexec_template.json  | sed s/PROJECT_KEY/${{ secrets.PROJECT_KEY }}/g | sed s/CF_TEST_ENVIRONMENT/${{ secrets.CF_TEST_ENVIRONMENTS }}/g |  sed s/TEST_ENVIRONMENT_NAME/${{ env.BROWSER }}/g | sed s/CF_TEST_PLAN/${{ secrets.CF_TEST_PLAN }}/g  | sed s/TESTPLAN_KEY/${{ secrets.TESTPLAN_KEY }}/g > test_exec.json
     - name: debug - list files3
       run: |
         ls -la
