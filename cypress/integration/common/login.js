@@ -9,7 +9,7 @@ Given(/^browser is opened to login page$/, () => {
 When('user {string} logs in with password {string}', (username, password) => {
   LoginPage.enter_username(username);
   LoginPage.enter_password(password);
-  LoginPage.pressLogin();
+     LoginPage.pressLogin();
 });
 
 Then(/^welcome page should be open$/, () => {
