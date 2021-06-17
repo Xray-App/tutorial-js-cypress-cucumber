@@ -34,7 +34,7 @@ jobs:
         curl -u ${{ secrets.JIRA_USERNAME }}:${{ secrets.JIRA_PASSWORD }}  "${{ secrets.JIRA_BASEURL }}/rest/raven/2.0/export/test?keys=${{ secrets.ISSUE_KEYS_TO_EXPORT_FROM }}&fz=true" -o $FEATURES_FILE
         rm -f features/*.feature
         unzip -o $FEATURES_FILE  -d features
-    - name: Cypress run
+    - name: Run Cypress tests
       uses: cypress-io/github-action@v2
       continue-on-error: true
       with:
