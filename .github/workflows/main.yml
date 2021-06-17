@@ -31,7 +31,7 @@ jobs:
       run: |
         FEATURES_FILE=features.zip
         rm -f $FEATURES_FILE
-        curl -u ${{ secrets.JIRASERVER_USERNAME }}:${{ secrets.JIRASERVER_PASSWORD }}  "${{ secrets.JIRASERVER_BASE_URL }}/rest/raven/2.0/export/test?keys=${{ secrets.ISSUE_KEYS_TO_EXPORT_FROM }}&fz=true" -o $FEATURES_FILE
+        curl -u ${{ secrets.JIRASERVER_USERNAME }}:${{ secrets.JIRASERVER_PASSWORD }}  "${{ secrets.JIRASERVER_BASE_URL }}/rest/raven/2.0/export/test?keys=${{ secrets.XRAYSERVER_ISSUE_KEYS_TO_EXPORT_FROM }}&fz=true" -o $FEATURES_FILE
         rm -f features/*.feature
         unzip -o $FEATURES_FILE  -d features
     - name: Run Cypress tests
