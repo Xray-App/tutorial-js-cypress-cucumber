@@ -1,6 +1,6 @@
 # Tutorial with Cypress tests, in JavaScript, using Cucumber, integrated with Xray
 
-[![build workflow](https://github.com/Xray-App/tutorial-js-cypress-cucumber/actions/workflows/main.yml/badge.svg)](https://github.com/Xray-App/tutorial-python-behave/actions/workflows/main.yml)
+[![build workflow](https://github.com/Xray-App/tutorial-js-cypress-cucumber/actions/workflows/main-cloud.yml/badge.svg)](https://github.com/Xray-App/tutorial-python-behave/actions/workflows/main-cloud.yml)
 [![license](https://img.shields.io/badge/License-BSD%203--Clause-green.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/Xray-App/community)
 
