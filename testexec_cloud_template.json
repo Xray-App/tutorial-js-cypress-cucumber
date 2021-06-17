@@ -6,10 +6,10 @@
         "summary": "Test Execution for cucumber execution",
         "issuetype": {
             "name": "Test Execution"
-        },
-    	"xrayFields": {
+        }
+    }, 
+    "xrayFields": {
         	"testPlanKey": "TESTPLAN_KEY",
         	"environments": ["TEST_ENVIRONMENT_NAME"]
-    	}
     }
 }
