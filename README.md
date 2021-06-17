@@ -38,6 +38,8 @@ or simply
 npm test
 ```
 
+The processing of Gherkin .feature files is possible using [cypress-cucumber-preprocessor](https://github.com/TheBrainFamily/cypress-cucumber-preprocessor), which is also able of producing Cucumber JSON reports, one per each .feature file.
+Cypress can take screenshots, however these don't become available in the Cucumber JSON reports. This repo provides a script [attach_screenshots.js](attach_screenshots.js) to embed them, and thus make them available in other tools later on, such as Xray.
 
 ## Submitting results to Jira
 
