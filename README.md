@@ -1,6 +1,6 @@
 # Tutorial with Cypress tests, in JavaScript, using Cucumber, integrated with Xray
 
-[![build workflow](https://github.com/Xray-App/tutorial-js-cypress-cucumber/actions/workflows/main-cloud.yml/badge.svg)](https://github.com/Xray-App/tutorial-python-behave/actions/workflows/main-cloud.yml)
+[![build workflow](https://github.com/Xray-App/tutorial-js-cypress-cucumber/actions/workflows/main-cloud.yml/badge.svg)](https://github.com/Xray-App/tutorial-js-cypress-cucumber/actions/workflows/main-cloud.yml)
 [![license](https://img.shields.io/badge/License-BSD%203--Clause-green.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/Xray-App/community)
 
@@ -8,7 +8,7 @@
 
 Code that supports the tutorial [Testing using Cypress and Cucumber in JavaScript](https://docs.getxray.app/display/XRAYCLOUD/Testing+using+Cypress+and+Cucumber+in+JavaScript) showcasing the integration between [Xray Test Management](https://www.getxray.app/) on Jira and Cypress.
 
-The test automation code implements some UI tests for doing authentication, targeting a dummy website having a login page.
+The test automation code implements some UI tests for doing authentication, targeting a dummy website having a login page. It uses two stories (i.e. login and logout) as the features we aim to deliver.
 
 ## Prerequisites
 
