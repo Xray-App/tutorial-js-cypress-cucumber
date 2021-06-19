@@ -38,6 +38,13 @@ or simply
 npm test
 ```
 
+Tests can also run inside a Docker container; local directory/file should be mounted so that Cucumber results are stored locally.
+
+```bash
+docker build . -t cypress_cucumber_tests
+docker run --rm -v $(pwd)/merged-test-results.json:/source/merged-test-results.json -t cypress_cucumber_tests
+```
+
 The processing of Gherkin .feature files is possible using [cypress-cucumber-preprocessor](https://github.com/TheBrainFamily/cypress-cucumber-preprocessor), which is also able of producing Cucumber JSON reports, one per each .feature file.
 Cypress can take screenshots, however these don't become available in the Cucumber JSON reports. This repo provides a script [attach_screenshots.js](attach_screenshots.js) to embed them, and thus make them available in other tools later on, such as Xray.
 
