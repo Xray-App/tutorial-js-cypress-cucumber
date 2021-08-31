@@ -53,3 +53,14 @@ jobs:
     - name: "Import results to Xray (server/DC) using multipart endpoint"
       run: |
         curl -X POST -u ${{ secrets.JIRASERVER_USERNAME }}:${{ secrets.JIRASERVER_PASSWORD }} -F info=@test_exec.json -F result=@"merged-test-results.json" ${{ secrets.JIRASERVER_BASE_URL }}/rest/raven/2.0/import/execution/cucumber/multipart
+    - name: "Import results to Xray using GH action"
+      uses: mikepenz/xray-action@fix/xray_server_dc_setup
+      with:
+       username: ${{ secrets.JIRASERVER_USERNAME }}
+       password: ${{ secrets.JIRASERVER_PASSWORD }}
+       xrayCloud: "false"
+       xrayBaseUrl: ${{ secrets.JIRASERVER_BASE_URL }}
+       testFormat: "cucumber"
+       testPaths: "merged-test-results.json"
+       testExecutionJson: "test_exec.json"
+
