@@ -57,7 +57,7 @@ jobs:
       run: |
         curl -X POST -u ${{ secrets.JIRASERVER_USERNAME }}:${{ secrets.JIRASERVER_PASSWORD }} -F info=@test_exec.json -F result=@"merged-test-results.json" ${{ secrets.JIRASERVER_BASE_URL }}/rest/raven/2.0/import/execution/cucumber/multipart
     - name: "Import results to Xray using GH action"
-      uses: mikepenz/xray-action@fix/xray_server_dc_setup
+      uses: mikepenz/xray-action@v2.3.0
       with:
        username: ${{ secrets.JIRASERVER_USERNAME }}
        password: ${{ secrets.JIRASERVER_PASSWORD }}
