@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BASE_URL=https://xray.cloud.xpand-it.com
+BASE_URL=https://xray.cloud.getxray.app
 PROJECT=CALC
 
 zip -r features.zip cypress/integration/ -i \*.feature
