@@ -39,7 +39,7 @@ jobs:
         rm -f features/*.feature
         unzip -o $FEATURES_FILE  -d features
     - name: Run Cypress tests
-      uses: cypress-io/github-action@v2
+      uses: cypress-io/github-action@v4
       continue-on-error: true
       with:
           # Specify Browser; container image has Firefox
