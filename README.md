@@ -29,7 +29,7 @@ Remember that to be able to run the scenarios, we need to have the corresponding
 When you have the .feature files, containing the Feature along with the Scenario properly tagged, you can finally run the tests using the `cypress` tool (directly or through npm).
 
 ```bash
-npx cypress run --spec 'features/**/*.feature' --config integrationFolder=.
+npx cypress run --spec 'features/**/*.feature'
 ```
 
 or simply
@@ -42,10 +42,10 @@ Tests can also run inside a Docker container; local directory/file should be mou
 
 ```bash
 docker build . -t cypress_cucumber_tests
-docker run --rm -v $(pwd)/merged-test-results.json:/source/merged-test-results.json -t cypress_cucumber_tests
+docker run --rm -v $(pwd)/cucumber-report.json:/source/cucumber-report.json -t cypress_cucumber_tests
 ```
 
-The processing of Gherkin .feature files is possible using [cypress-cucumber-preprocessor](https://github.com/TheBrainFamily/cypress-cucumber-preprocessor), which is also able of producing Cucumber JSON reports, one per each .feature file.
+The processing of Gherkin .feature files is possible using [cypress-cucumber-preprocessor](https://github.com/badeball/cypress-cucumber-preprocessor), which can generate Cucumber JSON reports.
 Cypress can take screenshots, however these don't become available in the Cucumber JSON reports. This repo provides a script [attach_screenshots.js](attach_screenshots.js) to embed them, and thus make them available in other tools later on, such as Xray.
 
 ## Submitting results to Jira
