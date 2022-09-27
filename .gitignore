@@ -1,10 +1,14 @@
+.gitignore
+cucumber-messages.ndjson
+cucumber-report.json
+.DS_Store
 *.zip
 node_modules/
 test-results/*
 cloud_auth.json
 merged-test-results.json
 test_exec.json
-cypress/videos/features/*
+cypress/videos/*
 cypress/cucumber-json/*
-cypress/screenshots/features/*
+cypress/screenshots/*
 features/

@@ -9,24 +9,24 @@
     "cypress:open": "npx cypress open",
     "test:local": "CYPRESS_ENV=localhost npm run test  --spec 'cypress/integration/**/*.feature",
     "test:prod": "CYPRESS_ENV=production npm run test",
-    "test": "npx cypress run --spec 'features/**/*.feature' --config integrationFolder=.",
+    "test": "npx cypress run --spec 'features/**/*.feature'",
     "test:debug:local": "CYPRESS_ENV=localhost npm run test:debug",
     "test:debug:prod": "CYPRESS_ENV=production npm run test:debug",
-    "test:debug": "npx cypress run --headed --browser chrome --env TAGS='@e2e-test' --spec 'cypress/integration/**/*.feature'",
-    "test:pull-features": "git submodule update --remote gherkin-features && cp -rf gherkin-features/* cypress/integration && node ./scripts/remove-old-features.js",
-    "attach_screenshots": "node attach_screenshots.js"
+    "test:debug": "npx cypress run --headed --browser chrome --env TAGS='@e2e-test' --spec 'cypress/integration/**/*.feature'"
   },
   "author": "Xblend",
   "license": "BSD-3-Clause",
   "dependencies": {
     "axios": "^0.18.0",
-    "cucumber-json-merge": "0.0.4",
     "fs-extra": "^7.0.1",
     "glob": "^7.1.7"
   },
   "devDependencies": {
-    "cypress": "^7.5.0",
-    "cypress-cucumber-preprocessor": "^4.1.2",
+    "@badeball/cypress-cucumber-preprocessor": "^13.0.2",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.1.3",
+    "@cypress/webpack-preprocessor": "latest",
+    "cypress": "^10.8.0",
+    "esbuild": "^0.14.45",
     "eslint": "^5.13.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-config-prettier": "^2.9.0",
@@ -37,12 +37,10 @@
     "lint-staged": "^8.1.3"
   },
   "cypress-cucumber-preprocessor": {
-    "nonGlobalStepDefinitions": true,
-    "cucumberJson": {
-      "generate": true,
-      "outputFolder": "cypress/cucumber-json",
-      "filePrefix": "",
-      "fileSuffix": ".cucumber"
+    "json": {
+      "enabled": true,
+      "formatter": "/usr/local/bin/cucumber-json-formatter",
+      "output": "cucumber-report.json"
     }
   },
   "husky": {
