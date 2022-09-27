@@ -41,7 +41,6 @@ jobs:
           # Specify Browser; container image has Firefox
         browser: ${{ env.BROWSER }}
         spec: features/**/*.feature
-        config: integrationFolder=.
     - name: generate auxiliary file to define fields on the Test Execution
       run: |
         cat testexec_template.json  | sed s/PROJECT_KEY/${{ secrets.JIRASERVER_PROJECT_KEY }}/g | sed s/CF_TEST_ENVIRONMENT/${{ secrets.JIRASERVER_CF_TEST_ENVIRONMENTS }}/g |  sed s/TEST_ENVIRONMENT_NAME/${{ env.BROWSER }}/g | sed s/CF_TEST_PLAN/${{ secrets.JIRASERVER_CF_TEST_PLAN }}/g  | sed s/TESTPLAN_KEY/${{ secrets.XRAYSERVER_TEST_PLAN_KEY }}/g > test_exec.json
