@@ -39,18 +39,12 @@ jobs:
         rm -f features/*.feature
         unzip -o $FEATURES_FILE  -d features
     - name: Run Cypress tests
-      uses: cypress-io/github-action@v2
+      uses: cypress-io/github-action@v4
       continue-on-error: true
       with:
           # Specify Browser; container image has Firefox
         browser: ${{ env.BROWSER }}
         spec: features/**/*.feature
-        config: integrationFolder=.
-    # - run: npm run test
-    - name: attach Cypress screenshots to Cucumber JSON report
-      run: npm run attach_screenshots
-    - name: merge multiple Cucumber JSON reports to a single JSON file
-      run: node_modules/cucumber-json-merge/bin/cucumber-json-merge  -d cypress/cucumber-json/
     - name: generate auxiliary JSON to define some fields on the Test Execution to be created
       run: |
         cat testexec_cloud_template.json  | sed s/PROJECT_KEY/${{ secrets.JIRACLOUD_PROJECT_KEY }}/g | sed s/TEST_ENVIRONMENT_NAME/${{ env.BROWSER }}/g | sed s/TESTPLAN_KEY/${{ secrets.XRAYCLOUD_TEST_PLAN_KEY }}/g > test_exec.json
@@ -59,7 +53,7 @@ jobs:
         cat test_exec.json
     - name: "Import results to Xray (cloud) using multipart endpoint"
       run: |
-        curl -X POST -H "Authorization: Bearer ${{ env.token }}"  -F info=@test_exec.json -F results=@"merged-test-results.json" "${{ secrets.XRAYCLOUD_BASE_URL }}/api/v1/import/execution/cucumber/multipart"
+        curl -X POST -H "Authorization: Bearer ${{ env.token }}"  -F info=@test_exec.json -F results=@"cucumber-report.json" "${{ secrets.XRAYCLOUD_BASE_URL }}/api/v1/import/execution/cucumber/multipart"
     - name: "Import results to Xray using GH action"
       uses: mikepenz/xray-action@v2.3.0
       with:
@@ -67,5 +61,5 @@ jobs:
        password: ${{ secrets.XRAYCLOUD_CLIENT_SECRET }}
        xrayCloud: "true"
        testFormat: "cucumber"
-       testPaths: "merged-test-results.json"
+       testPaths: "cucumber-report.json"
        testExecutionJson: "test_exec.json"

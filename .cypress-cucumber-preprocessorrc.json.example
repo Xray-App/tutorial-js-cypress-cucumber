@@ -1,0 +1,8 @@
+{
+  "stepDefinitions": ["[filepath].{js,ts}", "cypress/support/step_definitions/**/*.{js,ts}"],
+  "json": {
+    "enabled": true,
+    "formatter": "/usr/local/bin/cucumber-json-formatter",
+    "output": "cucumber-report.json"
+  }
+}

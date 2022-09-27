@@ -18,12 +18,13 @@ COPY *.sh .
 COPY cypress/ ./cypress/
 
 RUN chown -R automation.automation /source
+RUN wget https://github.com/cucumber/json-formatter/releases/download/v19.0.0/cucumber-json-formatter-linux-amd64 -O /usr/local/bin/cucumber-json-formatter 
+RUN chmod +x /usr/local/bin/cucumber-json-formatter
 USER automation
 
 RUN npm install
 
 ENV PATH $PATH:/home/automation/.local/bin
 
-#ENTRYPOINT ["mvn", "clean", "compile", "test", "-Dcucumber.plugin=json:report.json", "-Dcucumber.features=features/"]
 ENTRYPOINT ["./run_all_cloud_standard_workflow.sh"]
 
