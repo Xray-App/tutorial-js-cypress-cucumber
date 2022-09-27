@@ -46,7 +46,7 @@ docker run --rm -v $(pwd)/cucumber-report.json:/source/cucumber-report.json -t c
 ```
 
 The processing of Gherkin .feature files is possible using [cypress-cucumber-preprocessor](https://github.com/badeball/cypress-cucumber-preprocessor), which can generate Cucumber JSON reports.
-Cypress can take screenshots, however these don't become available in the Cucumber JSON reports. This repo provides a script [attach_screenshots.js](attach_screenshots.js) to embed them, and thus make them available in other tools later on, such as Xray.
+Cypress can take screenshots and these will become available in the Cucumber JSON reports automatically, and can be later seen in Xray.
 
 ## Submitting results to Jira
 
