@@ -8,7 +8,7 @@ const LOGIN_TEXT = 'LOGIN';
 
 class LoginPage {
   static visit() {
-    cy.visit('https://robotwebdemo.herokuapp.com/');
+    cy.visit('https://robotwebdemo.onrender.com/');
   }
 
 
